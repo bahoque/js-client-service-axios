@@ -28,15 +28,15 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@bahoque/client-service-core": "file:../../client-service-core/source",
+    "@bahoque/client-service-core": "file:../js-client-service-core",
     "axios": "^0.21.1",
     "lodash": "^4.17.20",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.168",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
     "prettier": "2.2.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.2"
   }
 }
