@@ -4,7 +4,7 @@
   "description": "Librería para manejar API de micro servicios (de momento solo feathersjs)",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mocha:start": "mocha"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.168",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "mocha": "^8.3.0",
     "prettier": "2.2.1",
     "typescript": "^4.2.2"
   }
