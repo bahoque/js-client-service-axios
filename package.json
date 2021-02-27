@@ -4,7 +4,7 @@
   "description": "Librería para manejar API de micro servicios (de momento solo feathersjs)",
   "main": "src/index.js",
   "scripts": {
-    "mocha:start": "mocha"
+    "mocha:start": "mocha test/ --recursive --exit"
   },
   "repository": {
     "type": "git",
