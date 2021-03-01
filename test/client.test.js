@@ -1,21 +1,32 @@
 const axios = require('axios');
+const service = require('../src/service');
 
-const base = 'https://jsonplaceholder.typicode.com/';
+const base = 'https://jsonplaceholder.typicode.com';
 const timeout = 3000;
 
-describe('create client', () => {
-    const client = axios.create({
-        baseURL: base,
-        timeout
-    });
-    const client2 = axios.create({
-        baseURL: 'https://www.google.com.co',
-        timeout
+describe('create service', () => {
+
+    const user = new service.Service(base, 'users', timeout);
+
+    it('request get', function (done) {
+        user.get(1).subscribe(data => {
+            done();
+        })
     });
 
-    it('inspect client', async function (done) {
-        console.log(client.defaults.baseURL);
-        console.log(client2.defaults.baseURL);
+    it('request find', async function (done) {
+        done();
+    });
+
+    it('request create', async function (done) {
+        done();
+    });
+
+    it('request update', async function (done) {
+        done();
+    });
+
+    it('request patch', async function (done) {
         done();
     });
 });

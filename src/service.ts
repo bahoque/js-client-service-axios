@@ -1,20 +1,13 @@
 import axios, { AxiosInstance } from "axios";
-import { from, Observable } from "rxjs";
+import { from, observable, Observable } from "rxjs";
 import { Service as CoreService, TService } from "@bahoque/client-service-core";
 
 export class Service<T1 = any> extends CoreService<T1> {
-	private _timeout: number;
-	private _url: string;
-	private _path: string;
-
 	private _client: AxiosInstance;
 
-	constructor(path: string) {
+	constructor(baseURL: string, url: string, timeout: number = 3000) {
 		super();
-
-		this._path = path;
-
-		this.makeClient();
+		this.makeClient(baseURL, url, timeout);
 	}
 
 	get client(): AxiosInstance {
@@ -26,40 +19,56 @@ export class Service<T1 = any> extends CoreService<T1> {
 	}
 
 	get path(): string {
-		return this._path;
+		return this._client.defaults.url;
 	}
 
 	set path(value: string) {
-		this._path = value;
-		this.makeClient();
+		this._client.defaults.url = value;
 	}
 
 	get timeout(): number {
-		return this._timeout;
+		return this._client.defaults.timeout;
 	}
 
 	set timeout(value: number) {
-		this._timeout = value;
-		this.makeClient();
+		this._client.defaults.timeout = value;
 	}
 
-	get url(): string {
-		return this._url;
+	get urlBase(): string {
+		return this._client.defaults.baseURL;
 	}
 
-	set url(value: string) {
-		this._url = value;
-		this.makeClient();
+	set urlBase(value: string) {
+		this._client.defaults.baseURL = value;
 	}
 
-	private makeClient(): void {
-		this._client = axios.create({
-			baseURL: this._url + this._path,
-			timeout: this._timeout,
-		});
+	private makeClient(baseURL: string, url: string, timeout: number): void {
+		this._client = axios.create({ baseURL, timeout, url });
 	}
 
 	raw<T>(method: keyof TService<T>, ...rest: any): Observable<T> {
-		return null;
+		console.log(method);
+		switch (method) {
+			case "get":
+				return new Observable<T>((subscriber) => {
+					console.log(1);
+					this._client
+						.get<T>(`/users/${rest[0]}`)
+						.then((data) => {
+							console.log(2);
+							subscriber.next(data.data);
+							subscriber.complete();
+						})
+						.catch((error) => {
+							console.log(3);
+							subscriber.error(error);
+						});
+				});
+			default:
+				return new Observable<T>((subscriber) => {
+					subscriber.next();
+					subscriber.complete();
+				});
+		}
 	}
 }
