@@ -13,7 +13,7 @@ interface user {
 	email: string;
 }
 
-const userService = new Service<user>();
+const userService = new Service<user>("https://jsonplaceholder.typicode.com", "users", 3000);
 
 userService.get(1, { /* query */ }).subscribe(res => {
 	// Tu código
