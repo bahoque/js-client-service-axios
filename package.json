@@ -1,6 +1,6 @@
 {
   "name": "@bahoque/client-service-axios",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Librería para manejar API de micro servicios (de momento solo feathersjs)",
   "main": "src/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@bahoque/client-service-core": "file:../js-client-service-core",
+    "@bahoque/client-service-core": "^1.0.2",
     "axios": "^0.21.1",
     "lodash": "^4.17.20",
     "rxjs": "^6.6.6"
